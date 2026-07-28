@@ -11,7 +11,8 @@ function Userregistorpage() {
   const formSubmit = (formdata) => {
     console.log(formdata);
 
-   axios.post('http://localhost:8900/registor', formdata)
+   // Backend Render URL
+axios.post("https://backend-ra14.onrender.com/registor", formdata)
       .then((r) => {
         console.log(r);
         toast.success("Registration successful!");

@@ -8,7 +8,8 @@ export default function Userlist() {
 
   const myapi = () => {
 
-    axios.get("https://backend-ra14.onrender.com/alldata")
+   // Get all users
+axios.get("https://backend-ra14.onrender.com/alldata")
       .then((d) => {
 
         console.log(d.data.data);
@@ -28,7 +29,8 @@ export default function Userlist() {
 
   const userdelete = (id) => {
 
-    axios.delete(`http://localhost:8900/userdelete/${id}`)
+   // Delete user
+axios.delete(`https://backend-ra14.onrender.com/userdelete/${id}`)
       .then((res)=>{
 
         console.log(res.data);
