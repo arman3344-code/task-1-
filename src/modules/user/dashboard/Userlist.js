@@ -2,19 +2,38 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 export default function Userlist() {
-  const [userlist, update] = useState([])
+  
+      const [userlist, updateusers] = useState([])
 
-  const api = () => {
-    axios.get('https://dummyjson.com/users').then((d) => {
-      
-      update(d.data.users);
-    })
-  }
 
-  useEffect(() => {
-    api();
-  }, [])
+    const myapi = () => {
+        axios.get("https://backend-ra14.onrender.com").then((d) => {
+            console.log(d.data.userslist);
+            updateusers(d.data.userslist);
+        })
+    }
 
+    useEffect(() => {
+        myapi();
+    }, []);
+
+
+    const userdelete = (r) => {
+
+            axios.delete(`https://backend-ra14.onrender.com` + r).then((res) => {
+                console.log(res);
+                if(res.data.status===209)
+                {
+                alert(res.data.msg);
+                }
+                myapi();
+            });
+            
+        }
+       
+        
+
+  
   return (
     <div className='container-fluid'>
       <div className='row'>
@@ -23,31 +42,31 @@ export default function Userlist() {
             <thead className="table-dark">
               <tr>
                 <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th>Name</th>
                 <th>Phone</th>
-                <th>Address</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Action</th>
               </tr>
             </thead>
-            <tbody>
-              {
-                userlist.map((u) => {
-                  return (
-                    <tr key={u.id}>
-                      <td>{u.id}</td>
-                      <td>{u.firstName}</td>
-                      <td>{u.lastName}</td>
-                      <td>{u.email}</td>
-                      <td>{u.phone}</td>
-                      <td>
-                        {u.address.address}, {u.address.city}, {u.address.state}
-                      </td>
-                    </tr>
-                  )
-                })
-              }
-            </tbody>
+             <tbody>
+                                {userlist.map((u) => {
+                                    return (
+                                        <tr>
+                                            <th scope="row">{u._id}</th>
+                                            <td>{u.Name}</td>
+                                            <td>{u.Phone}</td>
+                                            <td>{u.Email}</td>
+                                            <td>{u.Password}</td>
+                                            <td>
+                                                <button className='btn btn-danger btn-sm' onClick={() => userdelete(u._id)}>Del</button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+
+
+                            </tbody>
           </table>
         </div>
       </div>
