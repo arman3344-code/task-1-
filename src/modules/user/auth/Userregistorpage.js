@@ -11,7 +11,7 @@ function Userregistorpage() {
   const formSubmit = (formdata) => {
     console.log(formdata);
 
-    axios.post('${"https://task-1-ztfq.onrender.com"}/registor', formdata)
+   axios.post('http://localhost:8900/registor', formdata)
       .then((r) => {
         console.log(r);
         toast.success("Registration successful!");
