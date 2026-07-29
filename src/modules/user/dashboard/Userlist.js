@@ -8,8 +8,8 @@ export default function Userlist() {
 
   const myapi = () => {
 
-   // Get all users
-axios.get("https://backend-ra14.onrender.com/alldata")
+    // Get all users
+    axios.get("https://backend-ra14.onrender.com/alldata")
       .then((d) => {
 
         console.log(d.data.data);
@@ -29,13 +29,13 @@ axios.get("https://backend-ra14.onrender.com/alldata")
 
   const userdelete = (id) => {
 
-   // Delete user
-axios.delete(`https://backend-ra14.onrender.com/userdelete/${id}`)
-      .then((res)=>{
+    // Delete user
+    axios.delete(`https://backend-ra14.onrender.com/userdelete/${id}`)
+      .then((res) => {
 
         console.log(res.data);
 
-        if(res.data.status === 209){
+        if (res.data.status === 209) {
           alert(res.data.msg);
         }
 
@@ -69,33 +69,33 @@ axios.delete(`https://backend-ra14.onrender.com/userdelete/${id}`)
 
         <tbody>
 
-        {
-          userlist.map((u)=>(
-            
-            <tr key={u._id}>
+          {
+            userlist.map((u) => (
 
-              <td>{u._id}</td>
-              <td>{u.name}</td>
-              <td>{u.phone}</td>
-              <td>{u.email}</td>
-              <td>{u.password}</td>
+              <tr key={u._id}>
 
-              <td>
+                <td>{u._id}</td>
+                <td>{u.name}</td>
+                <td>{u.phone}</td>
+                <td>{u.email}</td>
+                <td>{u.password}</td>
 
-              <button 
-              className='btn btn-danger btn-sm'
-              onClick={()=>userdelete(u._id)}
-              >
-                Delete
-              </button>
+                <td>
 
-              </td>
+                  <button
+                    className='btn btn-danger btn-sm'
+                    onClick={() => userdelete(u._id)}
+                  >
+                    Delete
+                  </button>
+
+                </td>
 
 
-            </tr>
+              </tr>
 
-          ))
-        }
+            ))
+          }
 
 
         </tbody>

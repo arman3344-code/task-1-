@@ -9,10 +9,8 @@ function Userloginpage() {
   const mynav=useNavigate();
     const Submit=(formdata)=>{
        console.log(formdata)
-      //  axios.post('http://localhost:8900/login',formdata).then((r)=>{
-      //   console.log(r);
-      //  })
-      if(formdata.email === 'admin@gmail.com' && formdata.pass==='admin'){
+   
+      if(formdata.email && formdata.pass){
           toast.success("welcome to dashboard" ,{theme:'dark' , autoClose:2000})
           
           setTimeout(() => {
